@@ -1,0 +1,21 @@
+BUSINESS RULES: Clinic Appointment System
+
+A patient cannot book two appointments with the same doctor at the same time.
+
+A doctor cannot have overlapping appointments.
+
+Only the admin can confirm or cancel appointments in version one.
+
+A patient can request cancellation, but the appointment status should only change after admin approval.
+
+Each doctor has working days and working hours.
+
+The system should generate available slots based on doctor working hours and appointment duration.
+
+A doctor can mark a day as unavailable.
+
+If a doctor is unavailable on a specific day, patients should not see slots for that day.
+
+Appointment confirmation notification should be sent after the admin confirms the appointment.
+
+The system must store patient name, phone number, email, date of birth, and gender.

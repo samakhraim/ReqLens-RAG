@@ -1,0 +1,13 @@
+CHANGE REQUESTS: Clinic Appointment System
+
+The client later asked to add a waiting list feature. If a doctor is fully booked, a patient can join a waiting list.
+
+The client also asked about adding online payment in phase two.
+
+The client wants a report that shows appointment counts by doctor and specialization.
+
+The client asked if doctors can upload prescriptions later, but this is not required in the first version.
+
+The client wants the admin to export appointments to Excel.
+
+The client asked for SMS reminders one day before the appointment, but email reminders are enough for the first version.

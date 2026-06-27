@@ -1,0 +1,17 @@
+MEETING NOTES: Clinic Appointment System
+
+The clinic has three main roles: admin, doctor, and patient.
+
+Patients need to search doctors by specialization. The client mentioned examples such as dentist, dermatologist, cardiologist, and general doctor.
+
+The admin needs a dashboard to see today's appointments, cancelled appointments, and pending appointments.
+
+Appointment statuses should include pending, confirmed, cancelled, completed, and no-show.
+
+Doctors should not access financial reports in the first version. They should only see their own appointments and patient booking details.
+
+The clinic works Saturday to Thursday. Friday is usually closed.
+
+The client wants appointment duration to be configurable per doctor. Some doctors use 15-minute slots, others use 30-minute slots.
+
+The client asked if the system can prevent double booking for the same doctor at the same time.
