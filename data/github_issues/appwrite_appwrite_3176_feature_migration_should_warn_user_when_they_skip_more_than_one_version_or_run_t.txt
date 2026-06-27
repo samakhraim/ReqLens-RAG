@@ -1,0 +1,88 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 3176
+ISSUE URL: https://github.com/appwrite/appwrite/issues/3176
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement
+COMMENTS COUNT: 11
+CREATED AT: 2022-05-04T20:22:22Z
+UPDATED AT: 2025-07-10T15:06:12Z
+
+TITLE:
+🚀 Feature: Migration should warn user when they skip more than one version (or run twice).
+
+ISSUE BODY:
+### 🔖 Feature description
+
+Migration script currently allows the user to break their deployment by upgrading too many major versions. 
+
+For example, 0.11->0.12 is fine, 0.11->0.13 should not break the user's deployment.
+
+The script should either not run, handle the situation gracefully, or error out when it's being used incorrectly.
+
+TL;DR The migration script should not allow users to upgrade more than 1 major version at a time and break their deployments.
+
+### 🎤 Pitch
+
+As we release new versions more frequently and the product becomes more mature, it's important to safeguard users from accidentally upgrading more than one major version at a time and breaking their deployment. This is easily avoided by the migration script checking the current and target versions.
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/appwrite/blob/HEAD/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: gewenyu99
+Created At: 2022-05-04T20:23:16Z
+Body:
+@christyjacob4 I've assigned this to you, for now, so we don't forget about this. Please schedule this into a future release 😃
+
+Comment 2
+Author: stnguyen90
+Created At: 2023-07-19T19:56:19Z
+Body:
+[This](https://github.com/appwrite/appwrite/issues/2616#issuecomment-1641223048) should be implemented first and then this should be a separate PR on top.
+
+Comment 3
+Author: MKSinghDev
+Created At: 2023-09-17T17:50:10Z
+Body:
+> [This](https://github.com/appwrite/appwrite/issues/2616#issuecomment-1641223048) should be implemented first and then this should be a separate PR on top.
+
+Hi @stnguyen90 I would like to work on this. can you please assign this to me
+
+https://github.com/appwrite/appwrite/issues/2616 points to https://github.com/appwrite/appwrite/issues/3176
+
+and here you are pointing to https://github.com/appwrite/appwrite/issues/2616
+
+Comment 4
+Author: stnguyen90
+Created At: 2023-09-18T17:03:34Z
+Body:
+This would be nice, but I'm not sure how the migrate command would check if the admin is skipping versions 🧐
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

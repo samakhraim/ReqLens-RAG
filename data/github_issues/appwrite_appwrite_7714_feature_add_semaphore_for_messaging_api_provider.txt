@@ -1,0 +1,107 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 7714
+ISSUE URL: https://github.com/appwrite/appwrite/issues/7714
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, help wanted, product / messaging
+COMMENTS COUNT: 7
+CREATED AT: 2024-03-02T13:53:23Z
+UPDATED AT: 2026-03-21T12:09:27Z
+
+TITLE:
+🚀 Feature:  Add Semaphore for Messaging API Provider
+
+ISSUE BODY:
+### 🔖 Feature description
+
+[Semaphore](https://semaphore.co/) is a SMS API based in PHILIPPINES, it sends bulk SMS or OTP to all Philippines mobile networks such as Globe, Smart, Sun at the cheapest price.
+
+### 🎤 Pitch
+
+In my case, as a startup business, this sms provider is the cheapest pricing offer based on all I have been research.
+
+### Tasks
+
+- [ ] Add an adapter in [utopia-php/messaging](https://github.com/utopia-php/messaging)
+- [ ] Add create and update endpoints in Appwrite
+- [ ] Update the worker in Appwrite to include the new provider
+- [ ] Update the Console to include the new provider
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/.github/blob/main/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: eldadfux
+Created At: 2024-03-02T18:08:11Z
+Body:
+Thank you for making this suggestion. We're always looking to expand our integrations and add more providers to our different products.
+
+If anyone else would like to see this issue being prioritized please vote on it with a 👍.
+
+If you'd like to pick up this issue, adding new adapters to Appwrite is a great way to start contributing code to the project. For messaging, you can follow our [contribution guide](https://github.com/utopia-php/messaging/blob/main/CONTRIBUTING.md) and this tutorial for adding [a new messaging provider](https://github.com/utopia-php/messaging/blob/main/docs/add-new-adapter.md). 
+
+Before starting to work on this issue please use the comments and asked to be assigned for it to avoid conflicts.
+
+Comment 2
+Author: chaitanyaj2222
+Created At: 2024-03-05T16:44:37Z
+Body:
+I would like to take up this issue if @moshOntong-IT doesn't🙂. Could you assign this to me, please?
+
+Also, the branch naming convention in utopia-php/messaging requires us to add _issue id_. Should I create a duplicate of this issue in utopia-php/messaging as well?
+
+Comment 3
+Author: moshOntong-IT
+Created At: 2024-03-06T05:54:06Z
+Body:
+> I would like to take up this issue if @moshOntong-IT doesn't🙂. Could you assign this to me, please?
+> 
+> 
+> 
+> Also, the branch naming convention in utopia-php/messaging requires us to add _issue id_. Should I create a duplicate of this issue in utopia-php/messaging as well?
+
+Thanks for taking this feature request 🫶
+
+Comment 4
+Author: stnguyen90
+Created At: 2024-03-07T00:30:17Z
+Body:
+@7777chaitanya, thanks for your interest! 🙏 I’ve assigned the issue to you. Please keep us updated on your progress. If there isn’t any activity after a week, we may unassign you so that someone else can pick up the issue.
+
+> Should I create a duplicate of this issue in utopia-php/messaging as well?
+
+You can use this issue ID.
+
+Comment 5
+Author: chaitanyaj2222
+Created At: 2024-03-07T09:30:08Z
+Body:
+Thanks for assigning this to me dear @stnguyen90 🙏🏻. I will keep you posted on my progress. I will make sure to use this issue id.
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

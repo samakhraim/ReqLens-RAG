@@ -1,0 +1,104 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 42415
+ISSUE URL: https://github.com/supabase/supabase/issues/42415
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, external-issue
+COMMENTS COUNT: 2
+CREATED AT: 2026-02-03T12:53:06Z
+UPDATED AT: 2026-06-25T21:12:31Z
+
+TITLE:
+Supabase Studio error message when attempting to delete file without policy permission
+
+ISSUE BODY:
+# Chore
+
+## Describe the chore
+
+It would be nice if the storage module gave an error message like "User does not have permission to delete files. Please update bucket policy." when attempting to delete a file. Right now it just acts as if it was successfully deleted, when it really wasn't.
+
+## Additional context
+
+This is the behavior I experienced when trying this with the default Supabase Docker Compose setup (Supabase Studio version 2025.11.26).
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: coderabbitai[bot]
+Created At: 2026-02-03T12:53:15Z
+Body:
+<!-- This is an auto-generated issue plan by CodeRabbit -->
+
+
+### 📝 CodeRabbit Plan Mode
+Generate an implementation plan and prompts that you can use with your favorite coding agent.
+
+- [ ] <!-- {"checkboxId": "8d4f2b9c-3e1a-4f7c-a9b2-d5e8f1c4a7b9"} --> Create Plan
+
+<details>
+<summary>Examples</summary>
+
+- [Example 1](https://redirect.github.com/coderabbitai/git-worktree-runner/issues/29#issuecomment-3589134556)
+- [Example 2](https://redirect.github.com/coderabbitai/git-worktree-runner/issues/12#issuecomment-3606665167)
+
+</details>
+
+---
+<details>
+<summary><b>🔗 Related PRs</b></summary>
+
+supabase/supabase#42200 - Add error handling for deleting files in storage explorer [merged]
+</details>
+
+
+---
+<details>
+<summary> 🧪 Issue enrichment is currently in open beta.</summary>
+
+
+You can configure auto-planning by selecting labels in the issue_enrichment configuration.
+
+To disable automatic issue enrichment, add the following to your `.coderabbit.yaml`:
+```yaml
+issue_enrichment:
+  auto_enrich:
+    enabled: false
+```
+</details>
+
+💬 Have feedback or questions? Drop into our [discord](https://discord.gg/coderabbit)!
+
+Comment 2
+Author: Maliik-B
+Created At: 2026-06-25T21:12:31Z
+Body:
+Dug into this one. The silent success is structural: Studio shows the success toast regardless of how many objects were actually removed.
+
+ The delete goes through deleteBucketObject (https://github.com/supabase/supabase/blob/e9888de2c0dc60144cbd045295b2deb691e1e02c/apps/studio/data/storage/bucket-object-delete-mutation.ts#L12-L33), which only throws on a non-2xx (the error runs through handleError, typed never), and deleteFiles fires Successfully deleted N file(s) (https://github.com/supabase/supabase/blob/e9888de2c0dc60144cbd045295b2deb691e1e02c/apps/studio/state/storage-explorer.tsx#L1483-L1488) on anything that does not throw. It never checks what the response says was removed:
+
+ - Hosted: StorageObjectsController_deleteObjects (https://github.com/supabase/supabase/blob/e9888de2c0dc60144cbd045295b2deb691e1e02c/packages/api-types/types/platform.d.ts#L29480-L29485) is typed 200: { content?: never }, so there is no body to inspect.
+ - Self-hosted: the route (https://github.com/supabase/supabase/blob/e9888de2c0dc60144cbd045295b2deb691e1e02c/apps/studio/pages/api/platform/storage/%5Bref%5D/buckets/%5Bid%5D/objects/index.ts#L20-L30) returns the remove() result on 200, which is the list of objects actually deleted with a null error, so a path that matched nothing comes back as { data: [], error: null } and still hits the success toast. (This route uses the service_role key, so RLS is bypassed here; the empty result is a no-match case rather than a policy denial.)
+
+ Making delete honest means comparing the requested paths against what was actually removed. That set is available self-hosted; on hosted the endpoint would need to return it (or 403 when it removes nothing). Flagging so whoever picks this up scopes it right rather than just swapping the toast.
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

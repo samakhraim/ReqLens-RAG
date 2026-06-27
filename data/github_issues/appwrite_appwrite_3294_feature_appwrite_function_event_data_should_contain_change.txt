@@ -1,0 +1,107 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 3294
+ISSUE URL: https://github.com/appwrite/appwrite/issues/3294
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, product / databases, product / functions
+COMMENTS COUNT: 12
+CREATED AT: 2022-05-27T00:43:45Z
+UPDATED AT: 2026-02-23T19:10:07Z
+
+TITLE:
+🚀 Feature: APPWRITE_FUNCTION_EVENT_DATA should contain change
+
+ISSUE BODY:
+### 👟 Reproduction steps
+
+perform change/update to your DB
+
+
+### 👍 Expected behavior
+
+triggered function should receive "a change"
+ie OLD data vs NEW data
+
+### 👎 Actual Behavior
+
+You will get dump of updated data, but you have no idea what was there before.
+So how we should "act" onUpdate?
+
+### 🎲 Appwrite version
+
+Version 0.14.x
+
+### 💻 Operating system
+
+MacOS
+
+### 🧱 Your Environment
+
+docker
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/appwrite/blob/HEAD/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: eldadfux
+Created At: 2022-07-07T07:27:15Z
+Body:
+What would be a good key or structure for the event payload with this addition? An attribute called `old` or `previous`?
+
+Comment 2
+Author: superseby2
+Created At: 2022-07-07T07:33:53Z
+Body:
+To me, there is no need for another key. The data should be filled *only* with the data that has *actually* changed, and not the whole document.
+
+ie: my document is {"name": "Seb", "username": "elsuperseby2"}
+
+if the change happens on name I shoud receive as event data 
+
+{"name": "Sebastien"} 
+
+for instance.
+
+One may argue for the need to know the previous values but I don't have any use case in mind :)
+
+Comment 3
+Author: stnguyen90
+Created At: 2023-02-23T00:01:56Z
+Body:
+For now, if you need to know the previous document, I would suggest maintaining a duplicate collection with that data.
+
+Comment 4
+Author: gewenyu99
+Created At: 2023-06-16T14:32:24Z
+Body:
+> What would be a good key or structure for the event payload with this addition? An attribute called `old` or `previous`?
+
+`previous` is probably better here. Old is just a sus word to use here :P
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

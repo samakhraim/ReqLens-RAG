@@ -1,0 +1,87 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 8380
+ISSUE URL: https://github.com/appwrite/appwrite/issues/8380
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, product / databases
+COMMENTS COUNT: 9
+CREATED AT: 2024-07-11T09:13:08Z
+UPDATED AT: 2025-12-08T13:26:41Z
+
+TITLE:
+🚀 Enhancement: Add  `Query.deselect` to Queries
+
+ISSUE BODY:
+### 🔖 Enhancement description
+
+`Query.select` enables us to select the fields we need but how about we get a lot of fields and we want to exclude a field? There is no handy way to do so.
+
+### 🎤 Pitch
+
+`Query.deselect` should do the opposite of `Query.select` do.
+
+> Query.deselect(["name", "title"])
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/.github/blob/main/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: neolizee
+Created At: 2024-07-11T15:02:47Z
+Body:
+This is a good offer! If you need to exclude only 2 out of 20 parameters in the response, instead of listing all the necessary ones. 🌟
+
+Comment 2
+Author: byawitz
+Created At: 2024-07-12T13:32:42Z
+Body:
+Hey @soranoo, thanks for opening the issue, good idea.
+
+In the SQL and NoSQL world getting data always goes the `select` way, when you're selecting what you want.
+Adding `deselect` will make every request twice as long, as the only way to deselect attributes is by know first what attributes are to select.
+
+Comment 3
+Author: neolizee
+Created At: 2024-07-12T18:48:34Z
+Body:
+In the Google BigQuery SQL query there is SELECT * EXCEPT(column_to_exclude)
+
+These methods can help you manage large tables without manually enumerating each column.
+
+Comment 4
+Author: byawitz
+Created At: 2024-07-12T18:57:56Z
+Body:
+Are you sure this is a valid MySQL/MariaDB syntax?
+
+It seems like it's a different command
+- https://mariadb.com/kb/en/except/
+- https://dev.mysql.com/doc/refman/8.4/en/except.html
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

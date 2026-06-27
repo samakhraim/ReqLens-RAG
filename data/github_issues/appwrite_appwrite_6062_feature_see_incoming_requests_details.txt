@@ -1,0 +1,111 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 6062
+ISSUE URL: https://github.com/appwrite/appwrite/issues/6062
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement
+COMMENTS COUNT: 9
+CREATED AT: 2023-08-30T07:24:47Z
+UPDATED AT: 2024-03-20T22:18:14Z
+
+TITLE:
+🚀 Feature: See incoming requests' details
+
+ISSUE BODY:
+### 🔖 Feature description
+
+ My feature request is to be able to see details of incoming requests. Currently there is only vague data available to see - total amount of requests and their time. But I would like to see more details about the requests, particularly origin.
+
+### 🎤 Pitch
+
+Today I noticed an abnormally large amount of requests had come into my Appwrite app (that hasn't even been published yet and only two people have access to). I wanted to see the details of those requests, but it seems that you can't view detailed information about the incoming requests.
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/.github/blob/main/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: eldadfux
+Created At: 2023-08-30T19:19:46Z
+Body:
+Interesting suggestion! Do you see more use cases where this would be helpful for you?
+
+Comment 2
+Author: JorensM
+Created At: 2023-08-31T04:07:43Z
+Body:
+@eldadfux In addition to my original pitch, this feature would be very helpful for debugging code by being able to view the request's body and status to see if your own requests are being done correctly. If you were to add response details as well, that would be even more useful because it would let you see if your functions are returning the correct responses.
+
+Comment 3
+Author: stnguyen90
+Created At: 2023-08-31T22:55:27Z
+Body:
+@JorensM for now, you can enable HTTP [Access Logs in Traefik](https://doc.traefik.io/traefik/observability/access-logs/). This will give you logs like:
+
+```
+<remote_IP_address> - <client_user_name_if_available> [<timestamp>] "<request_method> <request_path> <request_protocol>" <origin_server_HTTP_status> <origin_server_content_size> "<request_referrer>" "<request_user_agent>" <number_of_requests_received_since_Traefik_started> "<Traefik_router_name>" "<Traefik_server_URL>" <request_duration_in_ms>ms
+```
+
+To do so, I highly recommend minimizing changes to Appwrite’s `docker-compose.yml` file so you can use the recommended [upgrade script](https://appwrite.io/docs/upgrade#install-new-version) to upgrade Appwrite. The upgrade script will wipe your tweaks if you customize Appwrite’s `docker-compose.yml` file. If you, instead, upgrade manually, you can make a mistake while updating some parts of the compose file.
+
+In your `docker-compose.override.yml`, include:
+
+```yml
+version: '3'
+
+services:
+
+  traefik:
+    command:
+      - --accessLog=true
+      - --providers.file.directory=/storage/config
+      - --providers.file.watch=true
+      - --providers.docker=true
+      - --providers.docker.exposedByDefault=false
+      - --providers.docker.constraints=Label(`traefik.constraint-label-stack`,`appwrite`)
+      - --entrypoints.appwrite_web.address=:80
+      - --entrypoints.appwrite_websecure.address=:443
+```
+
+Then run `docker compose up -d` to recreate traefik with this additional config.
+
+Comment 4
+Author: JorensM
+Created At: 2023-09-01T03:51:15Z
+Body:
+@stnguyen90 thanks, but I'm using Appwrite Cloud
+
+Comment 5
+Author: ArsBinarii
+Created At: 2023-09-26T08:09:10Z
+Body:
+I honestly can't believe there is no proper logs I can quickly access, just setup a project locally and the request jumped to 100 then 400 requests no idea why, spent 1h searching the web for the log capabilities of this platform. there is none !!
+
+You can get hacked, abused and you have no idea from where the traffic is coming and what is being requested. still have no idea from where the requests are coming, I will continue with the tutorial I am following but this is a major turn off not being able to view the logs
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

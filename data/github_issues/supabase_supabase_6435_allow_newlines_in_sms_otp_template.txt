@@ -1,0 +1,89 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 6435
+ISSUE URL: https://github.com/supabase/supabase/issues/6435
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, good first issue, frontend, auth
+COMMENTS COUNT: 59
+CREATED AT: 2021-09-20T10:56:54Z
+UPDATED AT: 2026-06-23T15:45:06Z
+
+TITLE:
+Allow newlines in SMS OTP template
+
+ISSUE BODY:
+# Feature request
+
+## Is your feature request related to a problem? Please describe.
+
+I'm using the SMS OTP feature for a progressive web application to be used on mobiles and would like to use the [WebOTP API](https://wicg.github.io/web-otp/) to automatically handle the SMS. The new templating feature gets me almost there – but only almost since it does not allow newlines (\n).
+
+## Describe the solution you'd like
+
+To conform to the WebOTP API, the SMS needs to contain at least one newline, see e.g. [here](https://web.dev/web-otp/#format) or [here](https://wicg.github.io/sms-one-time-codes/#origin-bound-one-time-code-message). The template should allow for newlines.
+
+## Describe alternatives you've considered
+
+There currently is no alternative to WebOTP for automated SMS OTP handling.
+
+## Additional context
+
+I've tried to sneak a newline into the template via "\n" and "\\\n", but to no avail.
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: J0
+Created At: 2022-04-13T13:18:53Z
+Body:
+Upon further inspection of [phone.go](https://github.com/supabase/gotrue/blob/ff4539b5bdaac044672111c6feaea3625b1ca751/api/phone.go#L86) it seems like this might be more of a feature request for Supabase Studio as it seems like GoTrue doesn't make modifications to the message(other than substituting `{{ .code }}`)
+
+New lines might not be going through as they are escaped on submission by the form used to contain the SMS OTP template. In  order to fix this issue, we'll have to modify the front-end form which holds the custom message so that new lines are not escaped.  We'll move this issue to Supabase/Studio and continue watching the issue from there.
+
+Let us know if you have further questions/concerns.
+
+Thanks!
+Joel
+
+Comment 2
+Author: J0
+Created At: 2022-07-20T12:24:09Z
+Body:
+Hey team! 
+
+This should now be resolved with the new template editor experience. Feel free to re-open if you're still facing issues though.
+
+cc: @MildTomato
+
+Comment 3
+Author: nathaneidelson
+Created At: 2023-10-11T21:15:55Z
+Body:
+@J0 doesn't work so far as i can tell...  it looks like https://github.com/supabase/supabase/pull/7242 was never actually merged?
+
+Comment 4
+Author: Bayyana-kiran
+Created At: 2023-11-10T10:29:13Z
+Body:
+can i work on this issue @fbarthez ?
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

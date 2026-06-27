@@ -1,0 +1,98 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 1318
+ISSUE URL: https://github.com/supabase/supabase/issues/1318
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: documentation, enhancement, extensions
+COMMENTS COUNT: 13
+CREATED AT: 2021-04-29T18:15:36Z
+UPDATED AT: 2026-05-20T12:33:10Z
+
+TITLE:
+PostGIS Tiger: Data not loaded to use geocode function
+
+ISSUE BODY:
+# Feature request
+
+## Is your feature request related to a problem? Please describe.
+
+I have enabled to `POSTGIS_TIGER_GEOCODER`, but whenever I use the its geocoding functionality no results are returned. I believe this is because while the extension is enabled, the census data it uses to geocode is not loaded. See the PostGIS Tiger docs for more info: http://postgis.net/docs/postgis_installation.html#install_tiger_geocoder_extension.
+
+The query I'm using to test is:
+```
+select tiger.geocode('... my address ...');
+```
+which returns
+```
+ geocode
+---------
+(0 rows)
+```
+
+## Describe the solution you'd like
+
+Documentation on how to load the census data and/or automatically loading it when enabling the extension.
+
+## Describe alternatives you've considered
+
+## Additional context
+
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: steve-chavez
+Created At: 2021-04-29T18:31:58Z
+Body:
+Hey @jaredramirez,
+
+Have you tried enabling the `ADDRESS_STANDARDIZER_DATA_US` extension?
+
+Comment 2
+Author: jaredramirez
+Created At: 2021-04-30T16:14:04Z
+Body:
+Yes, I have! Geocoding is quite different than address standardization. Geocoding is turning an address (that has been standardized) into lng/lat coordinates, which goes beyond what `ADDRESS_STANDARDIZER_DATA_US` can do. To do this, `POSTGIS_TIGER_GEOCODER` needs additional data loaded into the DB, as described in the link in the issue.
+
+Comment 3
+Author: burggraf
+Created At: 2021-06-22T23:03:21Z
+Body:
+I've seen this issue myself when I tried to load that extension initially.  I'll look at this when we start to add documentation for the individual extensions.  We may need to use the new data loader utility to load data when this extension is loaded, but it might also be more complicated than that if the amount of data is larger than the free tier database max size.
+
+Comment 4
+Author: cloudorbush
+Created At: 2022-06-09T05:25:08Z
+Body:
+yeah, encountering the same issue here. 
+
+you may want to check out this free [geocoding api](https://geocode.maps.co) instead
+
+Comment 5
+Author: encima
+Created At: 2024-01-09T09:57:07Z
+Body:
+Closing this due to age and version changes that have occurred since opening.
+
+Please do comment if you want it reopened and addressed!
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

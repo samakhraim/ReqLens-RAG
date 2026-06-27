@@ -1,0 +1,164 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 5832
+ISSUE URL: https://github.com/appwrite/appwrite/issues/5832
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement
+COMMENTS COUNT: 10
+CREATED AT: 2023-07-18T00:05:48Z
+UPDATED AT: 2026-03-26T17:11:41Z
+
+TITLE:
+🚀 Feature: Function init via CLI with Typescript
+
+ISSUE BODY:
+### 🔖 Feature description
+
+As a Typescript user, it would be nice to init a function with a typescript support so we can provide **type safety** for our appwrite functions.
+
+When we do `appwrite init function`, add an option to initialize with Typescript. 
+
+
+
+### 🎤 Pitch
+
+For all TS users, I guess a typescript support for introducing types and making cloud function error-free regarding types is pretty much desired. 
+
+Support for both require and import should be there.
+
+TS files could live in `dev` folder, for example. 
+Npm scripts would be 
+```
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+  },
+```
+
+devDependencies in package.json
+```
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "typescript": "^5.1.6"
+  },
+```
+
+Some basic tsconfig.json example
+```
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "target": "ESNext",
+    "outDir": "src"
+  },
+  "include": [
+    "dev/**/*"
+  ]
+}
+```
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/.github/blob/main/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: mbos2
+Created At: 2023-07-18T00:48:35Z
+Body:
+Here's my tsconfig for imports/exports support 
+
+```
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "outDir": "./src",
+    "rootDir": "./dev",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": [
+    "dev/**/*"
+  ],
+  "exclude": ["node_modules"]
+}
+```
+
+Comment 2
+Author: mariusbolik
+Created At: 2023-07-22T17:38:43Z
+Body:
+Don't forget to add  `"type": "module"` to the `package.json` file or you get an `ERR_REQUIRE_ESM` error when using newer npm packages that are using esm imports.
+
+Comment 3
+Author: mbos2
+Created At: 2023-07-24T21:22:12Z
+Body:
+> Don't forget to add `"type": "module"` to the `package.json` file or you get an `ERR_REQUIRE_ESM` error when using newer npm packages that are using esm imports.
+
+My node version is 18.12.0  
+I do not have type: module in my package json in my example and it works just fine.
+
+But good point, it should be optimized as best as it can be in case such issue can arise.
+
+Comment 4
+Author: JorensM
+Created At: 2023-09-06T09:24:36Z
+Body:
+I would love to have first-class TS support for Appwrite.
+
+Comment 5
+Author: mbos2
+Created At: 2023-09-23T21:39:52Z
+Body:
+Small update on this
+
+With new 1.4.3 functions, I have adjusted my tsconfig.json file
+
+```
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "outDir": "./src",
+    "rootDir": "./dev",
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": [
+    "dev/**/*",
+  ],
+  "exclude": ["node_modules"]
+}
+```
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

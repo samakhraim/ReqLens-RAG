@@ -1,0 +1,101 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 22054
+ISSUE URL: https://github.com/supabase/supabase/issues/22054
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: documentation, enhancement, awaiting-details
+COMMENTS COUNT: 8
+CREATED AT: 2024-03-16T01:22:56Z
+UPDATED AT: 2026-04-01T22:23:59Z
+
+TITLE:
+Additional Information to help setup with AWS SES
+
+ISSUE BODY:
+# Improve documentation
+
+## Link 
+
+https://supabase.com/docs/guides/auth/auth-smtp
+
+## Describe the problem
+
+AWS SES has some additional requirements that can be confusing to those used to services like Resend or Sendgrid, such as:
+- being placed in a testing sandbox initially and needing to request to leave
+- requiring a verified domain
+
+## Describe the improvement
+
+We can add this information as a callout when using SES, with links to AWS documentation, to catch these issues early if people run into them
+
+## Additional context
+
+Add any other context or screenshots that help clarify your question.
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: lliu56
+Created At: 2024-03-28T04:22:41Z
+Body:
+Any updates? I’ve been trying to integrate SES and supabase with no luck. I’m 
+1. Out of sandbox 
+2. Have verified domain
+3. Set up SMTP credentials ie email and password 
+4. Granted SESFullAccess to IAM user. 
+5. I’m actually able to send out emails programmatically.
+6. I get response code 500 when I try to sign in and use OAuth after configuring SES on the supabase console
+
+Comment 2
+Author: encima
+Created At: 2024-03-28T07:13:10Z
+Body:
+Hi @lliu56 
+Please open a support ticket with this info and our team can help
+
+Comment 3
+Author: lesourdingo
+Created At: 2024-04-27T11:41:18Z
+Body:
+> Any updates? I’ve been trying to integrate SES and supabase with no luck. I’m
+> 
+>     1. Out of sandbox
+> 
+>     2. Have verified domain
+> 
+>     3. Set up SMTP credentials ie email and password
+> 
+>     4. Granted SESFullAccess to IAM user.
+> 
+>     5. I’m actually able to send out emails programmatically.
+> 
+>     6. I get response code 500 when I try to sign in and use OAuth after configuring SES on the supabase console
+
+Same problem here. Have you found a solution?
+
+Comment 4
+Author: khangtruong0503
+Created At: 2024-06-09T15:35:46Z
+Body:
+Same issue. I use the same SES credentials on my Wordpress site and it works but it not working in Supabase. The error message is not specific.
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

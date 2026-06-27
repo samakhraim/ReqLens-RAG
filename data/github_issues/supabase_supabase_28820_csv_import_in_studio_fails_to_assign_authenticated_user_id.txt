@@ -1,0 +1,105 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 28820
+ISSUE URL: https://github.com/supabase/supabase/issues/28820
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: bug, enhancement, frontend, database, external-issue
+COMMENTS COUNT: 8
+CREATED AT: 2024-08-22T14:57:49Z
+UPDATED AT: 2026-06-18T07:52:10Z
+
+TITLE:
+CSV Import in studio fails to assign authenticated user id
+
+ISSUE BODY:
+# Bug report
+
+<!-- 
+
+⚠️ We receive a lot of bug reports which have already been solved or discussed. If you are looking for help, please try these first:
+
+- Docs: https://docs.supabase.com
+- Discussions: https://github.com/supabase/supabase/discussions
+- Discord: https://discord.supabase.com
+
+Before opening a bug report, please verify the following: 
+
+-->
+
+- [x] I confirm this is a bug with Supabase, not with my own application. 
+- [x] I confirm I have searched the [Docs](https://docs.supabase.com), GitHub [Discussions](https://github.com/supabase/supabase/discussions), and [Discord](https://discord.supabase.com). 
+
+## Describe the bug
+I created a CSV to import in an empty table. In the table editor I made sure to change from Postgres to impersonate an authenticated user.
+
+My table user_id is defined as: `user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,`
+
+I am getting an error that user_id is null and thus violating constraint. But since I am an authenticated user, the value should be inferred.
+
+## To Reproduce
+
+Import a CSV into a table with a user_id that is sourced from auth.users(id) while impersonating a valid authenticated user.
+
+## Expected behavior
+
+Import proceeds without constraint error regarding the user
+
+
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: encima
+Created At: 2024-08-23T07:17:24Z
+Body:
+Hi there,
+
+thanks for opening. This may seem like a bug but I believe that this feature does not exist in the import CSV functionality. The identity is only used when editing table cells, though it makes sense that would be expected behaviour!
+updated the labels to tag the frontend team for thoughts and PRs welcome for the feature!
+
+Comment 2
+Author: kushagra0304
+Created At: 2024-08-26T11:16:36Z
+Body:
+Hey I was able to reproduce the issue. But I am new here, I have read the guide-to-contribute, can someone give me some directions to fix this issue. Thanks!
+
+Comment 3
+Author: arthurgavazza
+Created At: 2024-11-19T03:57:03Z
+Body:
+Is anyone actively working on this issue? If not, I’d love to contribute a fix. Since I'm new to this repo, any guidance would be greatly appreciated!
+
+Comment 4
+Author: Hallidayo
+Created At: 2025-08-10T14:37:37Z
+Body:
+Hi all, We’re going to close this one due to inactivity. Please feel free to reopen if you’re still having issues here or open a new issue.
+
+Comment 5
+Author: castortech
+Created At: 2025-08-10T14:42:16Z
+Body:
+> Hi all, We’re going to close this one due to inactivity. Please feel free to reopen if you’re still having issues here or open a new issue.
+
+Why wasn't instead the issue addressed or the offer of help even been acknowledge to get it right ?
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

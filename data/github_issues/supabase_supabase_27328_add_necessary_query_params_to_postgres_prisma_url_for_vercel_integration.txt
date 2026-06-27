@@ -1,0 +1,70 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 27328
+ISSUE URL: https://github.com/supabase/supabase/issues/27328
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, database, integrations, awaiting-details
+COMMENTS COUNT: 10
+CREATED AT: 2024-06-17T19:50:48Z
+UPDATED AT: 2025-12-28T12:03:43Z
+
+TITLE:
+Add necessary query params to POSTGRES_PRISMA_URL for Vercel integration 
+
+ISSUE BODY:
+When integrating with Vercel, Supabase automatically adds environment variables to Vercel, however, certain params like `pgBouncer=true` and `connection_limit=1` are not automatically added.
+
+This leads to some confusing debugging and the only place I can see these being documented is on the [Prisma integration page](https://supabase.com/partners/integrations/prisma). Seems like if these params are necessary for an application to work correctly, they should just be added automatically.
+
+Its not entirely clear to me why other params _are_ added, like `sslmode=require` and `supa=base-pooler.x` (though that could be a separate issue), but at least having everything I need in one place would be a good single source of truth.
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: IHIutch
+Created At: 2024-06-17T19:53:00Z
+Body:
+Perhaps there could also be a portion of the Database Settings page that provides a POSTGRES_PRISMA_URL as well? Something under the connection string tabs would make sense to me
+
+<img width="781" alt="image" src="https://github.com/supabase/supabase/assets/20825047/9268420e-d550-4c2a-b3ac-c03452424de7">
+
+Comment 2
+Author: encima
+Created At: 2024-06-24T09:23:00Z
+Body:
+Thanks for opening this, @IHIutch, it certainly makes sense for it to be modified here (and for it to be consistent across all docs pages)!
+
+Comment 3
+Author: Hallidayo
+Created At: 2025-02-23T16:05:01Z
+Body:
+Hi @IHIutch - Thank you for opening this one, The Connect component now has a ORM/Prisma settings page which details Prisma option and I think this one can be closed now?
+
+Comment 4
+Author: jpainam
+Created At: 2025-02-26T01:48:42Z
+Body:
+These two query params `pgBouncer` and `connection_limit` are still not added to `POSTGRES_PRISMA_URL` from the `storage` tab. and this leads to `Error querying the database: db error: ERROR: prepared statement "s0" already exists`
+
+https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/databases-connections/pgbouncer
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

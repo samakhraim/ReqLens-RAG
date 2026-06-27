@@ -1,0 +1,40 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: supabase/supabase
+ISSUE NUMBER: 43637
+ISSUE URL: https://github.com/supabase/supabase/issues/43637
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, pr-opened, external-issue
+COMMENTS COUNT: 0
+CREATED AT: 2026-03-11T11:07:57Z
+UPDATED AT: 2026-03-11T11:10:45Z
+
+TITLE:
+Removed Mutable Ref Object
+
+ISSUE BODY:
+# Chore
+
+## Describe the chore
+
+Replace deprecated mutable object ref usage in the studio editor components and the DataTable hook with a composed/ref-forwarding approach (useComposedRefs) to ensure stable, predictable ref behavior across editors (Monaco and custom code editors) and prevent stale or conflicting refs.
+
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

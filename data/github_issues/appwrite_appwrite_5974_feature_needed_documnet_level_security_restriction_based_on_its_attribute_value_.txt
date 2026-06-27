@@ -1,0 +1,136 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 5974
+ISSUE URL: https://github.com/appwrite/appwrite/issues/5974
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, product / databases
+COMMENTS COUNT: 11
+CREATED AT: 2023-08-12T10:09:34Z
+UPDATED AT: 2025-06-28T16:12:29Z
+
+TITLE:
+🚀 Feature: Needed Documnet level security restriction based on its attribute value or relative query which returns true, like in supabase
+
+ISSUE BODY:
+### 🔖 Feature description
+
+cloud-beta : I needed DLS : should be like I can able to restrict each document based on
+current user (can do with roles),
+
+but can' t do based on
+its attribute value, based on any relative relationship query
+which is not what i getting
+
+like in supabase : RLS : you can restrict row access based on "current user value" as well as column values or any "sql Query" (which returns boolean value, like exists(Sql query)), which gives a lot more flexibility
+
+### 🎤 Pitch
+
+Let say: I want for users to see only the posts posted in their organisation
+
+which in my case, if i put  like `posts.organisationId === organisation.id`, then allow access,
+
+but using roles stuff, kind of making it more complex in this scenario,
+
+
+
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/.github/blob/main/CODE_OF_CONDUCT.md)
+- [X] I checked and didn't find similar issue
+
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: joeyouss
+Created At: 2023-08-24T19:28:36Z
+Body:
+Hi @rahul3v 
+Thanks for sharing your thoughts.
+To address the specific example you provided—where users should only see posts related to their organization—it's worth noting that this can already be achieved with Appwrite's current structure:
+
+Given your relationships, where:
+1. Users have a one-to-many relation with posts.
+2. Organizations have a one-to-many relation with users.
+
+Here's a suggested approach:
+
+**Using Teams**:
+- Create a separate team for each organization.
+- When creating the posts, assign read permissions specifically to that team.
+- Therefore, when users fetch posts, they will only be able to retrieve posts that are visible to members of their specific organization's team.
+
+Since you mentioned Cloud, our Cloud uses 1.1.2 version of Appwrite and hence you might not be able to use Relationships. But, we are working on updating it to the latest version.
+
+That said, we always appreciate feedback. Thank you for your understanding and for being part of our community!
+
+Comment 2
+Author: akashdeep000
+Created At: 2023-09-04T23:31:19Z
+Body:
+Suppose I want to allow the posts to be viewed based on these conditions:
+- Post have to be marked as published.
+- The post can be viewed without any subscription for first 1000 views (can be modified by author) only if the user follow the post author
+- But if user is a paid user then they can view any post (1st restrictions still apply)
+- If user and author belongs to same organisation then the user can view the post no matter if it is published or not and they not have to be a paid user.
+
+To implement this we have to use multiple team and also to allow free access for first 1000 views for users who follow the author we have to use appwrite functions.
+
+Where as if we implement permission based on attribute value and it's relationship's attribute then it will be much much easier to implement.
+
+Here is how it looks for [PocketBase](https://pocketbase.io):
+```
+(status = "published" &&
+((views <= allowedFreeViews && @request.auth.follows ?= author.id) ||
+@request.auth.isPaid = true)) ||
+@request.auth.organisation.id = author.organisation.id
+```
+For PocketBase implementation view [this page](https://pocketbase.io/docs/api-rules-and-filters/).
+
+Although for giving access to paid user and organisation member "Team" feature is a good use case but there have many use cases where permission based on attribute value and it's relationship's attribute will be easier to implement without writting custom code using functions.
+
+Comment 3
+Author: DH-555
+Created At: 2024-06-15T17:04:01Z
+Body:
+First all, I saw this to be somewhat useless as the same could be achieved with the current permissions system.
+
+Now with a growing app, I see one of the huge advantage that this has: avoiding having duplicated things in the database (basically avoiding needing to have an specific column with each document permissions)
+
+Comment 4
+Author: ghost
+Created At: 2024-09-13T07:09:30Z
+Body:
+This would indeed be very useful. Any ETA on this?
+
+Comment 5
+Author: ZeroAurora
+Created At: 2024-10-05T16:52:18Z
+Body:
+I would like to mention one specific useful case on this: since we don't have something like $createdBy (#3623) yet, enforcing a RLS can achieve some similiar result, i.e. restricting the user to create a document that only belongs to them.
+(I do want #3623 to be solved for my case though, because implementing RLS for it does introduce extra complexity. But for other use cases, I would like to hear more considerations.)
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness

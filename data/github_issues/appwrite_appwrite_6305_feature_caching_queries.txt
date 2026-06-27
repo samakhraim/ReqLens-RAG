@@ -1,0 +1,126 @@
+SOURCE TYPE: GitHub Issue
+REPOSITORY: appwrite/appwrite
+ISSUE NUMBER: 6305
+ISSUE URL: https://github.com/appwrite/appwrite/issues/6305
+STATE: open
+FETCHED LABEL FILTER: enhancement
+ISSUE LABELS: enhancement, product / databases
+COMMENTS COUNT: 12
+CREATED AT: 2023-09-22T13:29:27Z
+UPDATED AT: 2024-03-20T22:18:19Z
+
+TITLE:
+🚀 Feature: caching queries
+
+ISSUE BODY:
+### 🔖 Feature description
+
+I'm putting this as a feature, and not a bug, but feel free to re-tag it.
+
+I have a platform with 40+ million items in its database, growing exponentially. Whenever pages are loaded, the entire database is queried for the results, however, this becomes a very slow process, especially as the database grows. In my use case, most of the pages are rankings, so it would be like "most viewed today/week/month/etc" or "most recent" etc. 
+
+My suggestion is that instead of querying every single hit, that there is some optimizations that would allow the developer to cache the query. That way most users will get an instant reload, while every now an then when the cache is cleared, that one hit will be slow, so 99%+ users will get a fast load and that 1 person gets screwed. Right now, every user gets a slow hit, and as we know, the speed of a reload affects the user's preference for the platform, which could result in them going to a faster competitor, rage quitting, etc.
+
+This will not only decrease load times for the end user, but will put less stress on the server, especially in cloud situations that are charged per compute unit.
+
+### 🎤 Pitch
+
+For example, when a user clicks on "most recent", instead of the entire database being queried, it could be that a cache is stored of the last hit every 15 minutes (developer configurable), sure the list will be out of date by X minutes/hours/days, but for lists that don't change often this would be very fast. For example, if the page is for "most viewed this week", that could be set to update daily. 
+
+There's more examples too that don't really affect me, but could for others, for example social media type platforms that want to sort their feeds based on activity period, or messaging platforms, etc.
+
+### 👀 Have you spent some time to check if this issue has been raised before?
+
+- [X] I checked and didn't find similar issue
+
+### 🏢 Have you read the Code of Conduct?
+
+- [X] I have read the [Code of Conduct](https://github.com/appwrite/.github/blob/main/CODE_OF_CONDUCT.md)
+
+
+COMMENTS / DISCUSSION:
+
+Comment 1
+Author: stnguyen90
+Created At: 2023-09-22T16:27:00Z
+Body:
+@AidenY69, thanks for raising this issue! 🙏🏼 
+
+> I have a platform with 40+ million items in its database, growing exponentially. Whenever pages are loaded, the entire database is queried for the results, however, this becomes a very slow process, especially as the database grows. In my use case, most of the pages are rankings, so it would be like "most viewed today/week/month/etc" or "most recent" etc.
+
+Some questions for you:
+
+1. How long do these queries take?
+2. What is the query you're making?
+3. Do you have indexes for the related queries?
+
+Comment 2
+Author: ghost
+Created At: 2023-09-22T18:56:30Z
+Body:
+> @AidenY69, thanks for raising this issue! 🙏🏼
+> 
+> > I have a platform with 40+ million items in its database, growing exponentially. Whenever pages are loaded, the entire database is queried for the results, however, this becomes a very slow process, especially as the database grows. In my use case, most of the pages are rankings, so it would be like "most viewed today/week/month/etc" or "most recent" etc.
+> 
+> Some questions for you:
+> 
+> 1. How long do these queries take?
+> 2. What is the query you're making?
+> 3. Do you have indexes for the related queries?
+
+1. ~10,000 ms to 11,000 ms
+2. In this case it was a collection sorted by date and showing the most recent 20
+3. Yes
+
+Comment 3
+Author: stnguyen90
+Created At: 2023-09-22T19:04:42Z
+Body:
+Interesting...I'm still surprised an indexed query would take 10-11s to respond with only 20 results 🧐 I would try to investigate why the query is so slow. 
+
+As for caching, Appwrite doesn't cache `listDocuments()` because of the variability of queries and permissions. Appwrite **does**, however, cache `getDocument()`. So, you can put the data in a single document and fetch that instead. When data changes, you can update that 1 document.
+
+Some other members from the community have also made use of Cloudflare to cache specific routes and then purge the cache on update. For more info, see [Discord](https://discord.com/channels/564160730845151244/564160731327758347/1153038642332307617).
+
+Comment 4
+Author: ghost
+Created At: 2023-09-22T19:34:26Z
+Body:
+> Interesting...I'm still surprised an indexed query would take 10-11s to respond with only 20 results 🧐 I would try to investigate why the query is so slow.
+
+oh sorry, maybe I misunderstood your question. the collection has 40 million items, the result is 20, so it has to process the entire collection (40m), sort by date, then presents the 20. 
+
+>As for caching, Appwrite doesn't cache listDocuments() because of the variability of queries and permissions. Appwrite does, however, cache getDocument(). So, you can put the data in a single document and fetch that instead. When data changes, you can update that 1 document.
+
+I'm not sure I understand what you're saying here, but the actual items don't change, but the amount does, so today there could be 40m, but next week it might be 45m etc. the amount of items only goes up as users use the platform, but the items themselves are fixed data at the time of creation. So I'm not sure what you mean by "put the data in a single document"?
+
+>Some other members from the community have also made use of Cloudflare to cache specific routes and then purge the cache on update. For more info, see [Discord[(https://discord.com/channels/564160730845151244/564160731327758347/1153038642332307617).
+
+I'll give this a check. I already use Cloudflare, and have the site optimized to cache via NGINX, but since the actual database query is the bottleneck, I would think Appwrite would make sense to look into some built-in caching system for larger collections
+
+Comment 5
+Author: eldadfux
+Created At: 2023-09-22T19:39:14Z
+Body:
+Query caching is an interesting feature! Just to get more context, @AidenY69 what permission model are you using for this collection? is this collections-level or document-level permissions?
+
+Can you share more info to understand why the query is taking 10-11 seconds? Is this expected from your side due to potential query complexity?
+
+
+REQUIREMENTS ANALYSIS TASK:
+Analyze this GitHub issue as a software requirement or feature request.
+Extract:
+- Problem statement
+- User need
+- Confirmed requirements
+- Assumptions
+- User story
+- Acceptance criteria
+- Technical impact
+- Frontend impact
+- Backend impact
+- Database impact
+- API impact
+- Risks
+- Missing questions
+- Implementation readiness
