@@ -15,29 +15,11 @@ These requirements are often messy, incomplete, unclear, or not ready for develo
 ReqLens RAG solves this by retrieving the most relevant requirement context and using Gemini to generate structured software requirement analysis.
 
 ---
-
 ## What This Project Does
 
-ReqLens RAG can generate:
+ReqLens RAG helps analyze unclear software requirements from client notes and GitHub issues.
 
-* Requirement cards
-* Project understanding
-* Confirmed requirements and assumptions
-* MVP scope
-* Phase 2 / change request separation
-* MoSCoW priority
-* User stories
-* Acceptance criteria
-* Business rules
-* Suggested modules
-* Suggested database entities
-* Suggested API endpoints
-* Frontend, backend, database, and API impact
-* Security and permission impact
-* Risks and ambiguities
-* Missing questions for the client or product owner
-* Retrieval match percentage
-* Retrieval confidence
+It retrieves the most relevant context and uses Gemini to generate structured outputs such as user stories, acceptance criteria, technical impact, risks, and missing questions.
 
 ---
 
