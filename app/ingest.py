@@ -1,6 +1,5 @@
 import os
-from utils import chunk_text, get_embedding, save_json
-
+from app.utils import chunk_text, get_embedding, save_json
 DATA_FOLDER = "data"
 STORE_PATH = "vector_store/store.json"
 
