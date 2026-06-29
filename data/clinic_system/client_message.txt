@@ -1,0 +1,5 @@
+The client wants a clinic appointment system where patients can book appointments with doctors online.
+
+Patients should be able to choose a doctor, select an available date and time, and submit their booking request.
+
+The clinic admin should be able to view all appointments and update their status.

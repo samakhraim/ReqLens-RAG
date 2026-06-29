@@ -1,0 +1,5 @@
+During the meeting, the client explained that the system should support patients, doctors, and admins.
+
+Doctors should have schedules with available working hours.
+
+Admins should manage doctors, appointments, and patient records.

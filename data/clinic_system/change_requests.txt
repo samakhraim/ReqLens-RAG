@@ -1,0 +1,5 @@
+The client later requested SMS notifications for appointment confirmations.
+
+The client also asked for online payment support.
+
+These features should be considered Phase 2 unless required for the MVP.

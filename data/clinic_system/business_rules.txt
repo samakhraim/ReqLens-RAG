@@ -1,0 +1,7 @@
+A patient cannot book two appointments at the same time.
+
+A doctor cannot have overlapping appointments.
+
+Appointment statuses can be pending, confirmed, cancelled, or completed.
+
+Only admins can confirm or cancel appointments.
